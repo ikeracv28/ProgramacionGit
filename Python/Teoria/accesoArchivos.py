@@ -28,7 +28,7 @@ main()
 
 
 def ejercicioconwith():
-    with open('mi_archivo.txt', 'r') as archivo:
+    with open('mi_archivo.txt', 'a') as archivo:
         contenido = archivo.read()
         print(contenido)
 

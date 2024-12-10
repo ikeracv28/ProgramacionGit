@@ -14,8 +14,12 @@ def despedir():
 def saludovip(nombrevip, apellidovip):
     print(f"¡Hola {nombrevip} {apellidovip}!")
 
+saludovip('pedro', 'lopez')
+
 def pinta(numero):
     print('*'*numero)
+
+pinta(8)
 
 def suma(numero1, numero2):
     resultado = numero1 + numero2

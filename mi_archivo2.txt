@@ -1,0 +1,3 @@
+Hola, este es un archivo de ejemplo.
+Podemos escribir varias líneas así.
+Linea con apertura en append

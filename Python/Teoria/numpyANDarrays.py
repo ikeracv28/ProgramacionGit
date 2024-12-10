@@ -23,15 +23,17 @@ print(mi_matriz)
 ########################################
 
 #NumPy incluye funciones para crear arrays especiales de manera sencilla. Algunas de las más comunes son:
+import numpy as np
 
-np.zeros()     #Crea un array de ceros
+#np.zeros()     #Crea un array de ceros
 ceros = np.zeros((3, 4))
 print(ceros)
+
 # Salida: una matriz de 3x4 con todos los valores en 0
 
 
 
-np.ones() #Crea un array de unos.
+#np.ones() #Crea un array de unos.
 unos = np.ones((2, 2))
 print(unos)
 # Salida: una matriz de 2x2 con todos los valores en 1

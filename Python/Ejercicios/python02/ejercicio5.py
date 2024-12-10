@@ -21,5 +21,20 @@ El número mayor ingresado es 9.
 #Primero inicializamos las variables
 valor = 0
 intentos = 3
+numeroslist= []
 
-while True:
+def encontrar_mayor():
+    while True:
+        numeros = (input('Dime numeros, para cabar escribe hecho: '))
+        if numeros == 'hecho':
+            numeroslist.append(numeros)
+            break
+        
+def mostrar():
+    for numero in numeroslist:
+        if numero > numeroslist:
+            numeromayor= numero
+            print('El número mayor ingresado es:', numeromayor)
+
+encontrar_mayor()
+mostrar()

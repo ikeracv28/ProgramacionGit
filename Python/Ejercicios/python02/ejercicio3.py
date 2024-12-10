@@ -44,4 +44,4 @@ print("Estos son los nombres de la lista ", nombreslist)
 #Hacemos un bucle for para que nos muestre los nombres de la lista 1 a1
 for nombre in nombreslist:
 #Mostramos los nombres 1 a 1
-    print(f"- {nombre}")
+    print(f" {nombre}")
