@@ -11,27 +11,28 @@ Utilizar estructuras condicionales (if, else) para realizar la operación corres
  */
 do{
     $eleccion = readline('Elige una de las siguiente opciones: 1-suma, 2-resta, 3-multiplicación, 4-division, 5-salir: ');
-    if ($eleccion == 5)
-    $numero1 = readline('dime el primer número: ');
-    $numero2 = readline('dime el segundo número: ');
-
-    if ($eleccion == 1) {
-        echo $numero1 + $numero2 . "\n";
-    }
-    else if ($eleccion == 2) {
-        echo $numero1 - $numero2 . "\n";
-    }
-    else if ($eleccion == 3) {
-        echo $numero1 * $numero2 . "\n";
-    }
-    else if ($eleccion == 4) {
-        echo $numero1 / $numero2 . "\n";
-    }
-    else if ($eleccion == 5) {
+    if ($eleccion == 5){
         echo 'adios';
         break;
     }
-    else {
+
+    if (in_array($eleccion, [1,2,3,4])){
+        $numero1 = readline('dime el primer número: ');
+        $numero2 = readline('dime el segundo número: ');
+
+        if ($eleccion == 1) {
+            echo $numero1 + $numero2 . "\n";
+        }
+        else if ($eleccion == 2) {
+            echo $numero1 - $numero2 . "\n";
+        }
+        else if ($eleccion == 3) {
+            echo $numero1 * $numero2 . "\n";
+        }
+        else if ($eleccion == 4) {
+            echo $numero1 / $numero2 . "\n";
+        }
+    } else {
         echo 'opcion incorrecta' . "\n";
     }
-    } while ($eleccion != 5);
+} while ($eleccion != 5);
