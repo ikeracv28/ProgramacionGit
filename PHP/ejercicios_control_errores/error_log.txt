@@ -1,0 +1,2 @@
+Error: No se pudo leer el archivo. en 'archivo.txt' en 2024-12-13 12:31:26
+Error: No se pudo leer el archivo. en 'archivo.txt' en 2024-12-13 12:31:38
