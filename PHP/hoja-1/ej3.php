@@ -10,6 +10,34 @@ Si el número solo es divisible por 1 y por sí mismo, es primo.
 
  */
 
+<<<<<<< HEAD
+=======
+$numero = readline("Ingrese un numero: ");
+function numeroprimo($numero){
+    // primero, verificamos si el número es menor o igual a 1, ya que los números menores a 2 no pueden ser primos.
+    if ($numero <= 1){
+        echo "El numero $numero no es primo.\n";
+        return;  // Salimos de la función, ya que no es necesario continuar.
+    }
+    // empezamos un bucle desde 2 hasta la mitad del número (no es necesario chequear más allá de la mitad)
+    for ($i = 2; $i <= $numero / 2; $i++){
+        // si encontramos un número que divida al número sin dejar resto (es decir, que el resultado de la división sea exacto)
+        if ($numero % $i == 0){
+             // si el número es divisible por $i, entonces no es primo
+            echo "El numero $numero  no es primo";
+            return;
+        }
+        
+    } 
+    // si el número no fue divisible por ningún número entre 2 y su mitad, entonces es primo
+    echo "El numero $numero es primo.\n";
+}  
+// llamamos a la funcion
+numeroprimo($numero);
+
+/**
+ * Otra manera de hacerlo
+>>>>>>> 9ca5b39704ed8c87db90f11afc913b5bd7c9b13b
 $numero = (int)readline('Dime un numero para verificar si es primo: ');
 
 $esPrimo = true;
@@ -33,3 +61,8 @@ if ($esPrimo) {
 } else {
     echo "El número $numero no es primo.\n";
 }
+<<<<<<< HEAD
+=======
+
+*/
+>>>>>>> 9ca5b39704ed8c87db90f11afc913b5bd7c9b13b
