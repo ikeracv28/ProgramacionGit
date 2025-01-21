@@ -10,6 +10,7 @@ print(suma_hasta_limite(5)) # Debería imprimir 15 (1 + 2 + 3 + 4 + 5)
 
 '''
 
+limite = int(input("Dime un número "))
 #primero creamos la función
 def suma_hasta_limite(num_limite):
     suma = 0
@@ -19,6 +20,6 @@ def suma_hasta_limite(num_limite):
     return suma
 
 
-limite = int(input("Dime un número "))
+
 resultado = suma_hasta_limite(limite)
 print(resultado) #Por último mostramos el resultado

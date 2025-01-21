@@ -25,4 +25,4 @@ for letra in reversed(palabra):
     palabra_reves += letra
 
 #Mostramos la palbra del reves
-print("esta es la palabra del reves: " + palabra_reves)
+print("esta es la palabra del reves: " , palabra_reves)

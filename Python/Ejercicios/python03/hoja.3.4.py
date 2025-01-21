@@ -40,5 +40,5 @@ while True:
             break
 #Esto es que si la asignatura no es fin ingrese la calificacion y la añade al diccionario
     else:
-        calificacion = int(input("Ingresa la calificación de " + asignaturas + " " ))
+        calificacion = int(input("Ingresa la calificación de " , asignaturas , " " ))
         diccionario_asignaturas[asignaturas] = calificacion
