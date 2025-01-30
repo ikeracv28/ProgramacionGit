@@ -1,17 +1,20 @@
 <?php
 
 require_once '../controlador/UsuariosController.php';
-session_start();
 
+session_start();
 // Verificar si el usuario está logueado
-if (!isset($_SESSION['usuario'])) {
-    header("Location: iniciosesion_usuarios.php");
+if (!isset($_SESSION['administrador'])) {
+    header("Location: inicio_sesion_admin.php");
     exit();
 }
 
 $controller = new UsuariosController();
-$usuario = $_SESSION['usuario'];
-$error_message = null;
+$usuario = null;
+if (isset($_GET['id'])) {
+    $id_usuario = $_GET['id'];
+    $usuario = $controller->obtenerUsuarioPorId($id_usuario);
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST['nombre'];
@@ -29,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['usuario'] = $usuarioActualizado;
 
     // Recargar la página automáticamente después de la actualización
-    header("Location: perfil_usuario.php?actualizado=1");
+    header("Location: perfil_admin.php?actualizado=1");
     exit();
 }
 ?>
@@ -54,26 +57,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form method="POST" action="" class="mt-4">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo htmlspecialchars($_SESSION['usuario']['nombre'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $usuario['nombre']; ?>" required><br>
             </div>
 
             <div class="form-group">
                 <label for="apellido">Apellido:</label>
-                <input type="text" class="form-control" id="apellido" name="apellido" value="<?php echo htmlspecialchars($_SESSION['usuario']['apellidos'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required>
+                <input type="text" class="form-control" id="apellido" name="apellido" value="<?php echo $usuario['apellido']; ?>" required><br>
             </div>
 
             <div class="form-group">
                 <label for="correo">Email:</label>
-                <input type="email" class="form-control" id="correo_electronico" name="correo_electronico" value="<?php echo htmlspecialchars($_SESSION['usuario']['correo_electronico'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required>
+                <input type="email" class="form-control" id="correo_electronico" name="correo_electronico" value="<?php echo $usuario['correo_electronico']; ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="edad">Edad:</label>
-                <input type="number" class="form-control" id="edad" name="edad" value="<?php echo htmlspecialchars($_SESSION['usuario']['edad'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required>
+                <input type="number" class="form-control" id="edad" name="edad" value="<?php echo
+                                    $usuario['edad'];  ?>" required>
             </div>
 
             <button type="submit" class="btn btn-primary mt-3">Actualizar Perfil</button>
-            <a href="perfil_usuario.php" class="btn btn-danger mt-3">Volver</a>
+            <a href="perfil_admin.php" class="btn btn-danger mt-3">Volver</a>
 
         </form>
     </div>
