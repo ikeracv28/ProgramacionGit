@@ -1,54 +1,62 @@
 <?php
-
+// Incluye el archivo controlador para interactuar con los usuarios
 require_once '../controlador/UsuariosController.php';
 
+// Inicia la sesión para acceder a los datos guardados en ella
 session_start();
-// Verificar si el usuario está logueado
+
+// Verifica si el usuario está logueado, si no, lo redirige al inicio de sesión
 if (!isset($_SESSION['usuario'])) {
     session_destroy();
     header("Location: inicio_sesion.php");
     exit();
 }
 
+// Crea una instancia del controlador de usuarios
 $controller = new UsuariosController();
+
+// Obtiene el ID del usuario desde la sesión
 $idusuario = $_SESSION["usuario"]["id_usuario"];
+
+// Obtiene los datos del usuario usando su ID
 $usuario = $controller->obtenerUsuarioporid($idusuario);
-if (!$idusuario) { // Verifico si el usuario existe
+
+// Verifica si el usuario existe
+if (!$idusuario) {
     echo "Usuario no encontrado.";
     exit();
 }
 
+// Si el formulario es enviado mediante POST, se procesa la actualización
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recoge los datos del formulario
     $nombre = $_POST['nombre'];
     $apellidos = $_POST['apellido'];
     $correo = $_POST['correo'];
     
-
-    // Actualizar usuario en la base de datos
+    // Llama al controlador para actualizar los datos del usuario en la base de datos
     $controller->editarUsuario($usuario['id_usuario'], $nombre, $apellidos, $correo);
 
-    // Obtener los datos actualizados
+    // Obtiene los datos actualizados del usuario
     $usuarioActualizado = $controller->obtenerUsuarioPorId($usuario['id_usuario']);
 
-    // Actualizar los datos en la sesión
+    // Actualiza la sesión con los datos modificados
     $_SESSION['usuario'] = $usuarioActualizado;
 
-    // Recargar la página automáticamente después de la actualización
-    header("Location: editar_usuario.php");
+    // Redirige a la misma página y muestra un mensaje de éxito
+    header("Location: editar_usuario.php?actualizado=1");
     exit();
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Perfil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body class="bg-light">
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card shadow-lg p-4" style="width: 450px;">
@@ -64,6 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 <?php endif; ?>
 
+                <!-- Formulario para editar el perfil -->
                 <form method="POST" action="">
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre:</label>
@@ -80,7 +89,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="email" class="form-control" id="correo" name="correo" value="<?= htmlspecialchars($usuario['correo']) ?>" required>
                     </div>
 
-
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary">Actualizar Perfil</button>
                         <a href="../index_usuario.php" class="btn btn-danger">Volver</a>
@@ -92,5 +100,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
