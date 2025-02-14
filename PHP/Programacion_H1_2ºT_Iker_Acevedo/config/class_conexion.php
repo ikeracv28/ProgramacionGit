@@ -1,12 +1,14 @@
 <?php
-class Conexion {
+class Conexion
+{
     private $servidor = 'localhost';
     private $usuario = 'root';
     private $password = '1234';
     private $base_datos = 'streamWeb';
     public $conexion;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->conexion = new mysqli($this->servidor, $this->usuario, $this->password, $this->base_datos);
 
         if ($this->conexion->connect_error) {
@@ -14,8 +16,8 @@ class Conexion {
         }
     }
 
-    public function cerrar() {
+    public function cerrar()
+    {
         $this->conexion->close();
     }
 }
-?>
